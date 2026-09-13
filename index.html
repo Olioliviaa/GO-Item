@@ -18,7 +18,6 @@
     * { box-sizing: border-box; margin: 0; padding: 0; font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif; }
     body { background-color: var(--bg); color: var(--text); min-height: 100vh; display: flex; flex-direction: column; }
 
-    /* 顶部搜索与信息栏 */
     header {
       position: sticky;
       top: 0;
@@ -29,225 +28,44 @@
       box-shadow: 0 2px 8px rgba(0,0,0,0.03);
     }
 
-    .header-top {
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-      margin-bottom: 8px;
-    }
+    .header-top { display: flex; justify-content: space-between; align-items: center; margin-bottom: 8px; }
+    .site-title { font-size: 1.1rem; font-weight: 700; color: var(--text); }
+    .item-count { font-size: 0.85rem; color: var(--text-muted); background: var(--primary-light); padding: 3px 8px; border-radius: 10px; font-weight: 600; }
 
-    .site-title {
-      font-size: 1.1rem;
-      font-weight: 700;
-      color: var(--text);
-    }
+    .search-box { width: 100%; position: relative; }
+    .search-box input { width: 100%; padding: 8px 12px 8px 32px; border: 1px solid var(--border); border-radius: 20px; font-size: 0.9rem; outline: none; background: #f8fafc; transition: all 0.2s; }
+    .search-box input:focus { background: #fff; border-color: var(--primary); }
+    .search-box::before { content: "🔍"; position: absolute; left: 10px; top: 50%; transform: translateY(-50%); font-size: 0.8rem; opacity: 0.5; }
 
-    .item-count {
-      font-size: 0.85rem;
-      color: var(--text-muted);
-      background: var(--primary-light);
-      padding: 3px 8px;
-      border-radius: 10px;
-      font-weight: 600;
-    }
-
-    /* 实时搜索框 */
-    .search-box {
-      width: 100%;
-      position: relative;
-    }
-
-    .search-box input {
-      width: 100%;
-      padding: 8px 12px 8px 32px;
-      border: 1px solid var(--border);
-      border-radius: 20px;
-      font-size: 0.9rem;
-      outline: none;
-      background: #f8fafc;
-      transition: all 0.2s;
-    }
-
-    .search-box input:focus {
-      background: #fff;
-      border-color: var(--primary);
-    }
-
-    .search-box::before {
-      content: "🔍";
-      position: absolute;
-      left: 10px;
-      top: 50%;
-      transform: translateY(-50%);
-      font-size: 0.8rem;
-      opacity: 0.5;
-    }
-
-    /* 顶部分类与品牌滑动菜单 */
-    .nav-container {
-      background: #fff;
-      border-bottom: 1px solid var(--border);
-      position: sticky;
-      top: 92px;
-      z-index: 99;
-    }
-
-    .categories-bar {
-      display: flex;
-      gap: 8px;
-      padding: 10px 12px;
-      overflow-x: auto;
-      white-space: nowrap;
-      -webkit-overflow-scrolling: touch;
-      scrollbar-width: none;
-    }
+    .nav-container { background: #fff; border-bottom: 1px solid var(--border); position: sticky; top: 92px; z-index: 99; }
+    .categories-bar { display: flex; gap: 8px; padding: 10px 12px; overflow-x: auto; white-space: nowrap; -webkit-overflow-scrolling: touch; scrollbar-width: none; }
     .categories-bar::-webkit-scrollbar { display: none; }
-
-    .nav-tag {
-      display: inline-block;
-      padding: 6px 14px;
-      background: #f0f4f8;
-      color: #555;
-      border-radius: 18px;
-      font-size: 0.85rem;
-      font-weight: 600;
-      cursor: pointer;
-      flex-shrink: 0;
-      transition: all 0.2s;
-    }
+    .nav-tag { display: inline-block; padding: 6px 14px; background: #f0f4f8; color: #555; border-radius: 18px; font-size: 0.85rem; font-weight: 600; cursor: pointer; flex-shrink: 0; transition: all 0.2s; }
     .nav-tag.active { background: var(--primary); color: #fff; }
 
-    .brands-bar {
-      display: none;
-      gap: 6px;
-      padding: 8px 12px;
-      background: #fafbfc;
-      border-top: 1px dashed var(--border);
-      overflow-x: auto;
-      white-space: nowrap;
-      scrollbar-width: none;
-    }
+    .brands-bar { display: none; gap: 6px; padding: 8px 12px; background: #fafbfc; border-top: 1px dashed var(--border); overflow-x: auto; white-space: nowrap; scrollbar-width: none; }
     .brands-bar::-webkit-scrollbar { display: none; }
     .brands-bar.show { display: flex; }
-
-    .brand-tag {
-      padding: 4px 10px;
-      background: #fff;
-      border: 1px solid var(--border);
-      border-radius: 12px;
-      font-size: 0.78rem;
-      color: #666;
-      cursor: pointer;
-      flex-shrink: 0;
-    }
+    .brand-tag { padding: 4px 10px; background: #fff; border: 1px solid var(--border); border-radius: 12px; font-size: 0.78rem; color: #666; cursor: pointer; flex-shrink: 0; }
     .brand-tag.active { border-color: var(--primary); color: var(--primary); font-weight: bold; background: var(--primary-light); }
 
-    /* 物品列表主区 */
-    .content-area {
-      flex: 1;
-      padding: 12px;
-      max-width: 600px;
-      width: 100%;
-      margin: 0 auto;
-    }
+    .content-area { flex: 1; padding: 12px; max-width: 600px; width: 100%; margin: 0 auto; }
+    .cards-list { display: flex; flex-direction: column; gap: 12px; }
 
-    .cards-list {
-      display: flex;
-      flex-direction: column;
-      gap: 12px;
-    }
+    .card { background: var(--card-bg); border-radius: 12px; box-shadow: 0 2px 6px rgba(0,0,0,0.04); padding: 12px; display: flex; gap: 12px; align-items: center; }
+    .card img { width: 75px; height: 75px; border-radius: 8px; object-fit: cover; flex-shrink: 0; cursor: pointer; background-color: #f0f0f0; }
+    .card-body { flex: 1; min-width: 0; display: flex; flex-direction: column; justify-content: center; }
+    .card-header { display: flex; align-items: center; gap: 6px; margin-bottom: 4px; }
+    .card-brand { font-size: 0.72rem; background: var(--primary-light); color: var(--primary); padding: 2px 6px; border-radius: 4px; font-weight: 600; flex-shrink: 0; }
+    .card-title { font-size: 0.95rem; font-weight: bold; color: var(--text); white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+    .card-desc { font-size: 0.8rem; color: var(--text-muted); line-height: 1.35; display: -webkit-box; -webkit-line-clamp: 2; -webkit-box-orient: vertical; overflow: hidden; }
 
-    /* 物品卡片设计 */
-    .card {
-      background: var(--card-bg);
-      border-radius: 12px;
-      box-shadow: 0 2px 6px rgba(0,0,0,0.04);
-      padding: 12px;
-      display: flex;
-      gap: 12px;
-      align-items: center;
-      transition: transform 0.15s ease;
-    }
-
-    .card img {
-      width: 75px;
-      height: 75px;
-      border-radius: 8px;
-      object-fit: cover;
-      flex-shrink: 0;
-      cursor: pointer;
-      background-color: #f0f0f0;
-    }
-
-    .card-body {
-      flex: 1;
-      min-width: 0;
-      display: flex;
-      flex-direction: column;
-      justify-content: center;
-    }
-
-    .card-header {
-      display: flex;
-      align-items: center;
-      gap: 6px;
-      margin-bottom: 4px;
-    }
-
-    .card-brand {
-      font-size: 0.72rem;
-      background: var(--primary-light);
-      color: var(--primary);
-      padding: 2px 6px;
-      border-radius: 4px;
-      font-weight: 600;
-      flex-shrink: 0;
-    }
-
-    .card-title {
-      font-size: 0.95rem;
-      font-weight: bold;
-      color: var(--text);
-      white-space: nowrap;
-      overflow: hidden;
-      text-overflow: ellipsis;
-    }
-
-    .card-desc {
-      font-size: 0.8rem;
-      color: var(--text-muted);
-      line-height: 1.35;
-      display: -webkit-box;
-      -webkit-line-clamp: 2;
-      -webkit-box-orient: vertical;
-      overflow: hidden;
-    }
-
-    /* 图片预览 Modal 弹窗 */
-    .modal {
-      display: none;
-      position: fixed;
-      z-index: 1000;
-      top: 0;
-      left: 0;
-      width: 100%;
-      height: 100%;
-      background-color: rgba(0,0,0,0.8);
-      justify-content: center;
-      align-items: center;
-      padding: 20px;
-    }
-    .modal img {
-      max-width: 90%;
-      max-height: 80vh;
-      border-radius: 8px;
-      box-shadow: 0 4px 12px rgba(0,0,0,0.3);
-    }
+    .modal { display: none; position: fixed; z-index: 1000; top: 0; left: 0; width: 100%; height: 100%; background-color: rgba(0,0,0,0.8); justify-content: center; align-items: center; padding: 20px; }
+    .modal img { max-width: 90%; max-height: 80vh; border-radius: 8px; box-shadow: 0 4px 12px rgba(0,0,0,0.3); }
   </style>
 </head>
 <body>
 
-  <!-- 顶部栏：标题、搜索与数量统计 -->
   <header>
     <div class="header-top">
       <span class="site-title">📦 我的物品清单</span>
@@ -258,47 +76,44 @@
     </div>
   </header>
 
-  <!-- 顶部分类与品牌联动导航 -->
   <div class="nav-container">
     <div class="categories-bar" id="categories-bar"></div>
     <div class="brands-bar" id="brands-bar"></div>
   </div>
 
-  <!-- 卡片列表区域 -->
   <main class="content-area">
     <div class="cards-list" id="cards-list"></div>
   </main>
 
-  <!-- 图片放大预览弹窗 -->
   <div class="modal" id="image-modal" onclick="closeModal()">
     <img id="modal-img" src="" alt="预览大图">
   </div>
 
   <script>
-    // 已经替换为你专属的 API 链接
-    const API_URL = "https://script.google.com/macros/s/AKfycbw1ZURgSUre4VTRqA2Ysm0Asdk_Uh7ppn2P7svY-it_zWhrSOzGzfaz913kuTjAtmDVaQ/exec";
+    // ⚠️ 请将这里替换为你刚刚生成的“新版本”链接
+    const API_URL = "https://script.google.com/macros/s/AKfycbxr7oXQTdUFAqrcHXuPL7KXn0EZGT625fGUCVhHXV_CcwkX2oo9XempeditCvR2RiZB/exec";
 
     let itemData = [];
     let currentCategory = 'ALL';
     let currentBrand = 'ALL';
     let searchQuery = '';
 
-    // 从 Google Sheet 获取数据（已修复跨域重定向问题）
+    // 简化后的网络请求，避免触发复杂 CORS 预检
     async function fetchData() {
       try {
-        const response = await fetch(API_URL, {
-          method: 'GET',
-          mode: 'cors',
-          redirect: 'follow'
-        });
-
-        if (!response.ok) {
-          throw new Error(`HTTP 错误！状态码: ${response.status}`);
-        }
-
-        const rawData = await response.json();
+        const response = await fetch(API_URL);
         
-        // 过滤空名称的数据
+        if (!response.ok) {
+          throw new Error(`服务器响应错误: ${response.status}`);
+        }
+        
+        const rawData = await response.json();
+
+        // 检查后端是否返回了错误信息
+        if (rawData.error) {
+          throw new Error(`Google Apps Script 错误: ${rawData.error}`);
+        }
+        
         itemData = rawData.filter(item => item.Name && String(item.Name).trim() !== "");
         
         renderNav();
@@ -306,53 +121,43 @@
       } catch (err) {
         console.error("加载失败:", err);
         document.getElementById('cards-list').innerHTML = `
-          <div style="text-align:center; color:#e53e3e; padding:40px 0;">
-            数据加载失败，请检查网络或 API 链接。<br>
-            <small style="color:#888;">详细原因: ${err.message}</small>
+          <div style="text-align:center; color:#e53e3e; padding:40px 20px;">
+            <b>数据加载失败</b><br><br>
+            <small style="color:#888;">${err.message}</small>
           </div>`;
       }
     }
 
-    // 搜索框输入监听
     function onSearchChange() {
       searchQuery = document.getElementById('search-input').value.toLowerCase().trim();
       renderCards();
     }
 
-    // 渲染分类导航（大分类与二级品牌）
     function renderNav() {
       const catBar = document.getElementById('categories-bar');
       catBar.innerHTML = '';
 
-      // “全部大类” 标签
       const allTag = document.createElement('div');
       allTag.className = `nav-tag ${currentCategory === 'ALL' ? 'active' : ''}`;
       allTag.innerText = '全部大类';
       allTag.onclick = () => {
-        currentCategory = 'ALL';
-        currentBrand = 'ALL';
-        renderNav();
-        renderCards();
+        currentCategory = 'ALL'; currentBrand = 'ALL';
+        renderNav(); renderCards();
       };
       catBar.appendChild(allTag);
 
-      // 获取所有去重后的大分类 (Category)
       const categories = [...new Set(itemData.map(item => item.Category))].filter(Boolean);
-
       categories.forEach(cat => {
         const tag = document.createElement('div');
         tag.className = `nav-tag ${currentCategory === cat ? 'active' : ''}`;
         tag.innerText = cat;
         tag.onclick = () => {
-          currentCategory = cat;
-          currentBrand = 'ALL';
-          renderNav();
-          renderCards();
+          currentCategory = cat; currentBrand = 'ALL';
+          renderNav(); renderCards();
         };
         catBar.appendChild(tag);
       });
 
-      // 渲染二级品牌栏 (Brand)
       const brandBar = document.getElementById('brands-bar');
       brandBar.innerHTML = '';
 
@@ -361,52 +166,31 @@
         
         if (brands.length > 0) {
           brandBar.classList.add('show');
-          
           const allBrandTag = document.createElement('div');
           allBrandTag.className = `brand-tag ${currentBrand === 'ALL' ? 'active' : ''}`;
           allBrandTag.innerText = '全部品牌';
-          allBrandTag.onclick = () => {
-            currentBrand = 'ALL';
-            renderNav();
-            renderCards();
-          };
+          allBrandTag.onclick = () => { currentBrand = 'ALL'; renderNav(); renderCards(); };
           brandBar.appendChild(allBrandTag);
 
           brands.forEach(brand => {
             const bTag = document.createElement('div');
             bTag.className = `brand-tag ${currentBrand === brand ? 'active' : ''}`;
             bTag.innerText = brand;
-            bTag.onclick = () => {
-              currentBrand = brand;
-              renderNav();
-              renderCards();
-            };
+            bTag.onclick = () => { currentBrand = brand; renderNav(); renderCards(); };
             brandBar.appendChild(bTag);
           });
-        } else {
-          brandBar.classList.remove('show');
-        }
-      } else {
-        brandBar.classList.remove('show');
-      }
+        } else { brandBar.classList.remove('show'); }
+      } else { brandBar.classList.remove('show'); }
     }
 
-    // 渲染物品卡片
     function renderCards() {
       const container = document.getElementById('cards-list');
       container.innerHTML = '';
 
       let list = itemData;
 
-      // 按大分类过滤
-      if (currentCategory !== 'ALL') {
-        list = list.filter(i => i.Category === currentCategory);
-      }
-      // 按品牌过滤
-      if (currentBrand !== 'ALL') {
-        list = list.filter(i => i.Brand === currentBrand);
-      }
-      // 按搜索关键字过滤
+      if (currentCategory !== 'ALL') list = list.filter(i => i.Category === currentCategory);
+      if (currentBrand !== 'ALL') list = list.filter(i => i.Brand === currentBrand);
       if (searchQuery !== '') {
         list = list.filter(i => {
           const nameMatch = String(i.Name || '').toLowerCase().includes(searchQuery);
@@ -416,7 +200,6 @@
         });
       }
 
-      // 更新数量统计
       document.getElementById('item-count').innerText = `共 ${list.length} 件物品`;
 
       if (list.length === 0) {
@@ -427,7 +210,6 @@
       list.forEach(item => {
         const card = document.createElement('div');
         card.className = 'card';
-
         const imgSrc = item.ImageURL || 'https://via.placeholder.com/150?text=No+Image';
 
         card.innerHTML = `
@@ -444,17 +226,13 @@
       });
     }
 
-    // 图片放大预览逻辑
     function openModal(url) {
       document.getElementById('modal-img').src = url;
       document.getElementById('image-modal').style.display = 'flex';
     }
 
-    function closeModal() {
-      document.getElementById('image-modal').style.display = 'none';
-    }
+    function closeModal() { document.getElementById('image-modal').style.display = 'none'; }
 
-    // 初始化数据
     fetchData();
   </script>
 </body>
